@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class DaoTest {
+public class AdministratorDaoTest {
     private AdministratorDao administratorDao;
     private Administrator administrator;
 

@@ -8,13 +8,17 @@ public class Client implements Serializable {
     private String surname;
     private String login;
     private String password;
+    private String mail;
 
-    public Client(long id, String name, String surname, String login, String password) {
+    //TODO: подумать про паспортные данные пользователя как в нормальном банке
+
+    public Client(long id, String name, String surname, String login, String password, String mail) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
+        this.mail = mail;
     }
 
     public long getId() {
@@ -57,6 +61,14 @@ public class Client implements Serializable {
         this.password = password;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +80,8 @@ public class Client implements Serializable {
         if (!name.equals(client.name)) return false;
         if (!surname.equals(client.surname)) return false;
         if (!login.equals(client.login)) return false;
-        return password.equals(client.password);
+        if (!password.equals(client.password)) return false;
+        return mail.equals(client.mail);
 
     }
 
@@ -79,6 +92,7 @@ public class Client implements Serializable {
         result = 31 * result + surname.hashCode();
         result = 31 * result + login.hashCode();
         result = 31 * result + password.hashCode();
+        result = 31 * result + mail.hashCode();
         return result;
     }
 
@@ -90,6 +104,7 @@ public class Client implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", mail='" + mail + '\'' +
                 '}';
     }
 }

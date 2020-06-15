@@ -7,8 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class AdministratorDao {
     private static final String FIND_ALL_ADMINS = "SELECT * FROM administrator";
 
@@ -23,4 +21,8 @@ public class AdministratorDao {
         }
         return administrators;
     }
+
+//    public Administrator getById() {
+//
+//    }
 }
