@@ -10,6 +10,10 @@ public class BankCard implements Serializable {
 
     //TODO: сдедать больше полей?
 
+
+    public BankCard() {
+    }
+
     public BankCard(long id, String name, long userId, long accountId) {
         this.id = id;
         this.name = name;

@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ClientDaoTest {
     private ClientDao clientDao;
@@ -39,7 +38,13 @@ public class ClientDaoTest {
     void delete() throws SQLException {
         clientDao.delete(client);
         List<Client> clients = clientDao.findAll();
-        assertNull(clients);
+        String result = "[]";
+        assertEquals(clients.toString(), result);
         //просто пустой список получился
+    }
+
+    @Test
+    void update() {
+
     }
 }

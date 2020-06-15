@@ -16,6 +16,8 @@ public class ClientDao {
             " (id,name,surname,login,password,mail) " +
             "VALUES(?,?,?,?,?,?)";
     private static final String DELETE_CLIENT = "DELETE FROM client WHERE id = ?";
+    private static final String UPDATE_CLIENT = "UPDATE client SET name = ?, surname = ?, login = ?, " +
+            "password= ?, mail = ? WHERE id = ?";
 
     private final Connection connection = JdbcConnection.getConnection();
 
@@ -28,6 +30,11 @@ public class ClientDao {
                     resultSet.getString(5), resultSet.getString(6)));
         }
         return clients;
+    }
+
+    public Client findById(long id) {
+        Client client = new Client();
+        return client;
     }
 
     public Client create(Client client) throws SQLException {
@@ -46,5 +53,17 @@ public class ClientDao {
         PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT);
         preparedStatement.setLong(1, client.getId());
         preparedStatement.executeUpdate();
+    }
+
+    public Client update(Client client) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CLIENT);
+        preparedStatement.setString(1, client.getName());
+        preparedStatement.setString(2, client.getSurname());
+        preparedStatement.setString(3, client.getLogin());
+        preparedStatement.setString(4, client.getPassword());
+        preparedStatement.setString(5, client.getMail());
+        preparedStatement.setLong(6, client.getId());
+        preparedStatement.executeUpdate();
+        return client;
     }
 }

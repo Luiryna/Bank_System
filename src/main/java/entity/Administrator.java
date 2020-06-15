@@ -7,6 +7,9 @@ public class Administrator implements Serializable {
     private String login;
     private String password;
 
+    public Administrator() {
+    }
+
     public Administrator(long id, String login, String password) {
         this.id = id;
         this.login = login;

@@ -8,6 +8,9 @@ public class BankAccount implements Serializable {
     private long amountMoney;
     private boolean isBlocked;
 
+    public BankAccount() {
+    }
+
     public BankAccount(long id, String name, long amountMoney, boolean isBlocked) {
         this.id = id;
         this.name = name;

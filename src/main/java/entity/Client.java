@@ -12,6 +12,10 @@ public class Client implements Serializable {
 
     //TODO: подумать про паспортные данные пользователя как в нормальном банке
 
+
+    public Client() {
+    }
+
     public Client(long id, String name, String surname, String login, String password, String mail) {
         this.id = id;
         this.name = name;

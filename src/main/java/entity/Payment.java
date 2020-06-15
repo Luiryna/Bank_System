@@ -11,6 +11,10 @@ public class Payment implements Serializable {
 
     //TODO: 1) переделать на Date
 
+
+    public Payment() {
+    }
+
     public Payment(long id, String name, String date, long amount, long idAccount) {
         this.id = id;
         this.name = name;
