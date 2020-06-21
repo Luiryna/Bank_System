@@ -1,4 +1,4 @@
-import dao.AdministratorDao;
+import dao.impl.AdministratorDaoImpl;
 import entity.Administrator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,12 +9,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class AdministratorDaoTest {
-    private AdministratorDao administratorDao;
+    private AdministratorDaoImpl administratorDao;
     private Administrator administrator;
 
     @BeforeEach
     void initialize() {
-        administratorDao = new AdministratorDao();
+        administratorDao = new AdministratorDaoImpl();
     }
 
     @Test

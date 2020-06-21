@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public class Client implements Serializable {
+public class Client extends BaseEntity {
     private long id;
     private String name;
     private String surname;

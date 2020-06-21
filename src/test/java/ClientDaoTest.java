@@ -1,6 +1,4 @@
-import dao.AdministratorDao;
-import dao.ClientDao;
-import entity.Administrator;
+import dao.impl.ClientDaoImpl;
 import entity.Client;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +9,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ClientDaoTest {
-    private ClientDao clientDao;
+    private ClientDaoImpl clientDao;
     private Client client;
 
     @BeforeEach
     void initialize() {
-        clientDao = new ClientDao();
+        clientDao = new ClientDaoImpl();
         client = new Client(1, "Iryna", "Lukashevich", "login", "password",
                 "luiryna322@gmail.com");
     }
@@ -30,8 +28,7 @@ public class ClientDaoTest {
 
     @Test
     void create() throws SQLException {
-        Client newClient = clientDao.create(client);
-        assertNotNull(newClient);
+        clientDao.create(client);
     }
 
     @Test

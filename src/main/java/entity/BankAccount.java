@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public class BankAccount implements Serializable {
+public class BankAccount extends BaseEntity {
     private long id;
     private String name;
     private long amountMoney;
@@ -75,7 +75,7 @@ public class BankAccount implements Serializable {
 
     @Override
     public String toString() {
-        return "BankAccount{" +
+        return "BankAccountDao{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", amountMoney=" + amountMoney +

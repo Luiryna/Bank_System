@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public class Administrator implements Serializable {
+public class Administrator extends BaseEntity {
     private long id;
     private String login;
     private String password;

@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public class BankCard implements Serializable {
+public class BankCard extends BaseEntity {
     private long id;
     private String name;
     private long userId;
