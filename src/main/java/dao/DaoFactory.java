@@ -5,7 +5,6 @@ public class DaoFactory {
     private static final DaoFactory instance = new DaoFactory();
 
 
-
     private DaoFactory() {
 
     }

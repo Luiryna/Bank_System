@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ClientDaoImpl implements ClientDao {
     private static final String FIND_ALL_CLIENTS = "SELECT * FROM client";
-    private static final String FIND_BY_ID_CLIENT = "SELECT * FROM client WHERE id=?";
+    private static final String FIND_BY_ID = "SELECT * FROM client WHERE id = ?";
     private static final String CREATE_CLIENT = "INSERT INTO client" +
             " (id,name,surname,login,password,mail) " +
             "VALUES(?,?,?,?,?,?)";
@@ -23,6 +23,7 @@ public class ClientDaoImpl implements ClientDao {
 
     private final Connection connection = JdbcConnection.getConnection();
 
+    @Override
     public List<Client> findAll() throws SQLException {
         List<Client> clients = new ArrayList<>();
         ResultSet resultSet = connection.createStatement().executeQuery(FIND_ALL_CLIENTS);
@@ -34,11 +35,24 @@ public class ClientDaoImpl implements ClientDao {
         return clients;
     }
 
-    public Client findById(long id) {
+    @Override
+    public Client findById(long id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID);
+        preparedStatement.setLong(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
         Client client = new Client();
+        if (resultSet.next()) {
+            client.setId(resultSet.getLong(1));
+            client.setName(resultSet.getString(2));
+            client.setSurname(resultSet.getString(3));
+            client.setLogin(resultSet.getString(4));
+            client.setPassword(resultSet.getString(5));
+            client.setMail(resultSet.getString(6));
+        }
         return client;
     }
 
+    @Override
     public void create(Client client) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLIENT);
         preparedStatement.setLong(1, client.getId());
@@ -50,12 +64,14 @@ public class ClientDaoImpl implements ClientDao {
         preparedStatement.executeUpdate();
     }
 
+    @Override
     public void delete(Client client) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT);
         preparedStatement.setLong(1, client.getId());
         preparedStatement.executeUpdate();
     }
 
+    @Override
     public void update(Client client) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CLIENT);
         preparedStatement.setString(1, client.getName());

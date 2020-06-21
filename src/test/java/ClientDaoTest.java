@@ -41,7 +41,9 @@ public class ClientDaoTest {
     }
 
     @Test
-    void update() {
-
+    void findById() throws SQLException {
+        Client client = clientDao.findById(1);
+        System.out.println(client.toString());
+        assertNotNull(client);
     }
 }
