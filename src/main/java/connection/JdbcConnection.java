@@ -11,7 +11,7 @@ public class JdbcConnection {
     private static Connection connection;
 
     /*TODO:
-            1) хранимые процедуры для инициализации, удвления и заполнения бд стартовыми данными
+            1) хранимые процедуры
             2) создать connection pool
             3) исключения для слоев
             4) фабрика для дао?

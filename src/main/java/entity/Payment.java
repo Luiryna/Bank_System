@@ -9,7 +9,8 @@ public class Payment extends BaseEntity {
     private long amount;
     private long idAccount;
 
-    //TODO: 1) переделать на Date
+    //TODO: 1) переделать на LocalDate java Time
+
 
 
     public Payment() {
