@@ -19,7 +19,7 @@ public class BankAccountDaoTest {
     void initialize() {
         bankAccountDao = new BankAccountDaoImpl() {
         };
-        bankAccount = new BankAccount(1, "Main", 200000, 0);
+        bankAccount = new BankAccount(2, "Main", 200000, 0);
     }
 
     @Test
