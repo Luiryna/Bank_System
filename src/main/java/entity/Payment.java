@@ -1,11 +1,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Payment extends BaseEntity {
     private long id;
     private String name;
-    private String date;
+    private Date date;
     private long amount;
     private long idAccount;
 
@@ -16,10 +17,17 @@ public class Payment extends BaseEntity {
     public Payment() {
     }
 
-    public Payment(long id, String name, String date, long amount, long idAccount) {
+    public Payment(long id, String name, Date date, long amount, long idAccount) {
         this.id = id;
         this.name = name;
         this.date = date;
+        this.amount = amount;
+        this.idAccount = idAccount;
+    }
+
+    public Payment(long id, String name, long amount, long idAccount) {
+        this.id = id;
+        this.name = name;
         this.amount = amount;
         this.idAccount = idAccount;
     }
@@ -40,11 +48,11 @@ public class Payment extends BaseEntity {
         this.name = name;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -89,5 +97,14 @@ public class Payment extends BaseEntity {
         return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", amount=" + amount +
+                ", idAccount=" + idAccount +
+                '}';
+    }
 }

@@ -29,7 +29,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
         ResultSet resultSet = connection.createStatement().executeQuery(FIND_ALL_BANK_ACCOUNTS);
         while (resultSet.next()) {
             bankAccounts.add(new BankAccount(resultSet.getInt(1), resultSet.getString(2),
-                    resultSet.getLong(3), resultSet.getBoolean(4)));
+                    resultSet.getLong(3), resultSet.getInt(4)));
         }
         return bankAccounts;
     }
@@ -44,7 +44,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
             bankAccount.setId(resultSet.getLong(1));
             bankAccount.setName(resultSet.getString(2));
             bankAccount.setAmountMoney(resultSet.getLong(3));
-            //bankAccount.isBlocked(resultSet.getBoolean(4));
+            bankAccount.setBlocked(resultSet.getInt(4));
         }
         return bankAccount;
     }
@@ -56,7 +56,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
         preparedStatement.setLong(1, bankAccount.getId());
         preparedStatement.setString(2, bankAccount.getName());
         preparedStatement.setLong(3, bankAccount.getAmountMoney());
-        preparedStatement.setBoolean(4, bankAccount.isBlocked());
+        preparedStatement.setInt(4, bankAccount.isBlocked());
         preparedStatement.executeUpdate();
     }
 
@@ -74,7 +74,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_BANK_ACCOUNT);
         preparedStatement.setString(1, bankAccount.getName());
         preparedStatement.setLong(2, bankAccount.getAmountMoney());
-        preparedStatement.setBoolean(3, bankAccount.isBlocked());
+        preparedStatement.setInt(3, bankAccount.isBlocked());
         preparedStatement.setLong(4, bankAccount.getId());
         preparedStatement.executeUpdate();
     }

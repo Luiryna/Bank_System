@@ -6,12 +6,12 @@ public class BankAccount extends BaseEntity {
     private long id;
     private String name;
     private long amountMoney;
-    private boolean isBlocked;
+    private int isBlocked;
 
     public BankAccount() {
     }
 
-    public BankAccount(long id, String name, long amountMoney, boolean isBlocked) {
+    public BankAccount(long id, String name, long amountMoney, int isBlocked) {
         this.id = id;
         this.name = name;
         this.amountMoney = amountMoney;
@@ -42,11 +42,11 @@ public class BankAccount extends BaseEntity {
         this.amountMoney = amountMoney;
     }
 
-    public boolean isBlocked() {
+    public int isBlocked() {
         return isBlocked;
     }
 
-    public void setBlocked(boolean blocked) {
+    public void setBlocked(int blocked) {
         isBlocked = blocked;
     }
 
@@ -69,13 +69,13 @@ public class BankAccount extends BaseEntity {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + name.hashCode();
         result = 31 * result + (int) (amountMoney ^ (amountMoney >>> 32));
-        result = 31 * result + (isBlocked ? 1 : 0);
+        result = 31 * result + isBlocked;
         return result;
     }
 
     @Override
     public String toString() {
-        return "BankAccountDao{" +
+        return "BankAccount{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", amountMoney=" + amountMoney +

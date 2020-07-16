@@ -20,8 +20,23 @@ public class ClientDaoImpl implements ClientDao {
     private static final String DELETE_CLIENT = "DELETE FROM client WHERE id = ?";
     private static final String UPDATE_CLIENT = "UPDATE client SET name = ?, surname = ?, login = ?, " +
             "password= ?, mail = ? WHERE id = ?";
+    private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM client WHERE login = ? AND password = ?";
+    private static final String FIND_BY_LOGIN = "SELECT * FROM client WHERE login = ?";
 
-    private final Connection connection = JdbcConnection.getConnection();
+    private Connection connection = JdbcConnection.getConnection();
+
+    public  Client findUser(String login) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LOGIN);
+        preparedStatement.setString(1, login);
+        return getClient(preparedStatement);
+    }
+
+    public  Client findUser(String login, String password) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LOGIN_AND_PASSWORD);
+        preparedStatement.setString(1, login);
+        preparedStatement.setString(2, password);
+        return getClient(preparedStatement);
+    }
 
     @Override
     public List<Client> findAll() throws SQLException {
@@ -39,17 +54,7 @@ public class ClientDaoImpl implements ClientDao {
     public Client findById(long id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID);
         preparedStatement.setLong(1, id);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        Client client = new Client();
-        if (resultSet.next()) {
-            client.setId(resultSet.getLong(1));
-            client.setName(resultSet.getString(2));
-            client.setSurname(resultSet.getString(3));
-            client.setLogin(resultSet.getString(4));
-            client.setPassword(resultSet.getString(5));
-            client.setMail(resultSet.getString(6));
-        }
-        return client;
+        return getClient(preparedStatement);
     }
 
     @Override
@@ -81,5 +86,19 @@ public class ClientDaoImpl implements ClientDao {
         preparedStatement.setString(5, client.getMail());
         preparedStatement.setLong(6, client.getId());
         preparedStatement.executeUpdate();
+    }
+
+    private Client getClient(PreparedStatement preparedStatement) throws SQLException {
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Client client = new Client();
+        if (resultSet.next()) {
+            client.setId(resultSet.getLong(1));
+            client.setName(resultSet.getString(2));
+            client.setSurname(resultSet.getString(3));
+            client.setLogin(resultSet.getString(4));
+            client.setPassword(resultSet.getString(5));
+            client.setMail(resultSet.getString(6));
+        }
+        return client;
     }
 }

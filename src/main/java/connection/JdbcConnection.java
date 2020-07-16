@@ -12,17 +12,19 @@ public class JdbcConnection {
 
     /*TODO:
             1) хранимые процедуры
-            2) создать connection pool
+            2) создать connection pool & убрать jdbc connection
             3) исключения для слоев
             4) фабрика для дао?
      */
 
     public static Connection getConnection()  {
         try {
-            if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-            }
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return connection;
