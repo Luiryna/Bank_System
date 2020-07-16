@@ -1,10 +1,8 @@
 package connection;
 
 import com.mysql.cj.jdbc.Driver;
-
-import connection.BasicConnectionPool;
-import connection.DataForConnectToDatabase;
-import connection.DataForConnectToDatabaseFactory;
+import connection.data.PropertiesData;
+import connection.data.PropertiesDataFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +14,7 @@ public class Connector {
 
     public static Connection getConnection() {
 
-        DataForConnectToDatabase data = DataForConnectToDatabaseFactory.getInstance();
+        PropertiesData data = PropertiesDataFactory.getInstance();
         Connection connection = null;
 
         try {

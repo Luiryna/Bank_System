@@ -1,14 +1,14 @@
-package connection;
+package connection.data;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class DataForConnectToDatabase {
+public class PropertiesData {
     private Properties properties;
 
 
-    public DataForConnectToDatabase() {
+    public PropertiesData() {
         properties = new Properties();
         readProperties();
     }
