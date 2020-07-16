@@ -17,8 +17,8 @@ public class ClientDaoTest {
     @BeforeEach
     void initialize() {
         clientDao = new ClientDaoImpl();
-        client = new Client(1, "Iryna", "Lukashevich", "login", "password",
-                "luiryna322@gmail.com");
+        client = new Client(2, "Chelovek", "Chelovecov", "newlogin", "newpassword",
+                "luiryna228@gmail.com");
     }
 
     @Test

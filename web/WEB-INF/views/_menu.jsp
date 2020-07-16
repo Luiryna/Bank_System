@@ -12,12 +12,14 @@
 
     <a href="${pageContext.request.contextPath}/">Home</a>
     |
-    <a href="${pageContext.request.contextPath}/cardList">Cards</a>
+    <a href="${pageContext.request.contextPath}/productList">Cards</a>
     |
     <a href="${pageContext.request.contextPath}/bankAcoountList">Bank Accounts</a>
     |
     <a href="${pageContext.request.contextPath}/userInfo">My Account Info</a>
     |
     <a href="${pageContext.request.contextPath}/login">Login</a>
+    |
+    <a href="${pageContext.request.contextPath}/logout">Logout</a>
 
 </div>

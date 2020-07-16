@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 
 public class MyUtils {
-    public static final String ATT_NAME_CONNECTION = "ATTRIBUTE_FOR_CONNECTION";
 
     private static final String ATT_NAME_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
 
@@ -18,6 +17,10 @@ public class MyUtils {
     public static void storeLoginedUser(HttpSession session, Client loginedUser) {
         // В JSP можно получить доступ через ${loginedUser}
         session.setAttribute("loginedUser", loginedUser);
+    }
+
+    public static void deleteUserFromSession(HttpSession session) {
+        session.setAttribute("loginedUser", 0);
     }
 
 

@@ -20,8 +20,21 @@ public class BankCardDaoImpl implements BankCardDao {
     private static final String DELETE_BANK_CARD = "DELETE FROM bank_card WHERE id = ?";
     private static final String UPDATE_BANK_CARD = "UPDATE bank_card SET name = ?, id_user = ?, id_account = ? " +
             " WHERE id = ?";
+    private static final String FIND_BY_USER_ID = "SELECT * FROM bank_card WHERE id_user = ?";
 
     private final Connection connection = Connector.getConnection();
+
+    public List<BankCard> findAll(long userId) throws SQLException {
+        List<BankCard> bankCards = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USER_ID);
+        preparedStatement.setLong(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            bankCards.add(new BankCard(resultSet.getInt(1), resultSet.getString(2),
+                    resultSet.getLong(3), resultSet.getLong(4)));
+        }
+        return bankCards;
+    }
 
     @Override
     public List<BankCard> findAll() throws SQLException {
