@@ -1,5 +1,15 @@
 package connection;
 
+import com.mysql.cj.jdbc.Driver;
+
+import connection.BasicConnectionPool;
+import connection.DataForConnectToDatabase;
+import connection.DataForConnectToDatabaseFactory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Connector {
     private Connector() {
     }
@@ -14,7 +24,7 @@ public class Connector {
             Driver driver = new com.mysql.cj.jdbc.Driver();
             DriverManager.registerDriver(driver);
 
-            Class.forName("com.mysql.cj.jdbc.Driver"); //нужен ли он ??
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             connection = BasicConnectionPool.create(
                     data.getUrl(),
@@ -24,7 +34,7 @@ public class Connector {
                     .getConnection();
 
         } catch (SQLException e) {
-            logger.error(e.getMessage());
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

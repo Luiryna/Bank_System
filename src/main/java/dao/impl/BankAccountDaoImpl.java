@@ -1,6 +1,6 @@
 package dao.impl;
 
-import connection.JdbcConnection;
+import connection.Connector;
 import dao.BankAccountDao;
 import entity.BankAccount;
 
@@ -21,7 +21,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
     private static final String UPDATE_BANK_ACCOUNT = "UPDATE bank_account SET name = ?, amount_money = ?, is_blocked = ? " +
             " WHERE id = ?";
 
-    private final Connection connection = JdbcConnection.getConnection();
+    private final Connection connection = Connector.getConnection();
 
     @Override
     public List<BankAccount> findAll() throws SQLException {

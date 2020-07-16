@@ -1,6 +1,6 @@
 package dao.impl;
 
-import connection.JdbcConnection;
+import connection.Connector;
 import dao.ClientDao;
 import entity.Client;
 
@@ -23,7 +23,7 @@ public class ClientDaoImpl implements ClientDao {
     private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM client WHERE login = ? AND password = ?";
     private static final String FIND_BY_LOGIN = "SELECT * FROM client WHERE login = ?";
 
-    private Connection connection = JdbcConnection.getConnection();
+    private Connection connection = Connector.getConnection();
 
     public  Client findUser(String login) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LOGIN);

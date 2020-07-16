@@ -1,6 +1,6 @@
 package dao.impl;
 
-import connection.JdbcConnection;
+import connection.Connector;
 import dao.PaymentDao;
 import entity.Payment;
 
@@ -16,7 +16,7 @@ public class PaymentDaoImpl implements PaymentDao {
             "VALUES(?,?,?,?,?)";
     private static final String DELETE_CLIENT = "DELETE FROM payment WHERE id = ?";
 
-    private final Connection connection = JdbcConnection.getConnection();
+    private final Connection connection = Connector.getConnection();
 
     @Override
     public List<Payment> findAll() throws SQLException {

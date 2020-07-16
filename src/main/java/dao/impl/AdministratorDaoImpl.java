@@ -1,6 +1,6 @@
 package dao.impl;
 
-import connection.JdbcConnection;
+import connection.Connector;
 import dao.AdministratorDao;
 import entity.Administrator;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class AdministratorDaoImpl implements AdministratorDao {
     private static final String FIND_ALL_ADMINS = "SELECT * FROM administrator";
 
-    private final Connection connection = JdbcConnection.getConnection();
+    private final Connection connection = Connector.getConnection();
 
     public List<Administrator> findAll() throws SQLException {
         List<Administrator> administrators = new ArrayList<>();
