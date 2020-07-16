@@ -22,14 +22,11 @@ public class LoginServlet extends HttpServlet {
         super();
     }
 
-    // Показать страницу Login.
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Forward (перенаправить) к странице /WEB-INF/views/loginView.jsp
-        // (Пользователь не может прямо получить доступ
-        // к страницам JSP расположенные в папке WEB-INF).
+
         RequestDispatcher dispatcher //
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
 
@@ -37,8 +34,6 @@ public class LoginServlet extends HttpServlet {
 
     }
 
-    // Когда пользователь вводит userName & password, и нажимает Submit.
-    // Этот метод будет выполнен.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,40 +66,31 @@ public class LoginServlet extends HttpServlet {
                 errorString = e.getMessage();
             }
         }
-        // В случае, если есть ошибка,
-        // forward (перенаправить) к /WEB-INF/views/login.jsp
+
         if (hasError) {
             client = new Client();
             client.setLogin(login);
             client.setPassword(password);
 
-            // Сохранить информацию в request attribute перед forward.
             request.setAttribute("errorString", errorString);
             request.setAttribute("user", client);
 
-            // Forward (перенаправить) к странице /WEB-INF/views/login.jsp
             RequestDispatcher dispatcher //
                     = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
 
             dispatcher.forward(request, response);
         }
-        // В случае, если нет ошибки.
-        // Сохранить информацию пользователя в Session.
-        // И перенаправить к странице userInfo.
         else {
             HttpSession session = request.getSession();
             MyUtils.storeLoginedUser(session, client);
 
-            // Если пользователь выбирает функцию "Remember me".
             if (remember) {
                 MyUtils.storeUserCookie(response, client);
             }
-            // Наоборот, удалить Cookie
             else {
                 MyUtils.deleteUserCookie(response);
             }
 
-            // Redirect (Перенаправить) на страницу /userInfo.
             response.sendRedirect(request.getContextPath() + "/userInfo");
         }
     }

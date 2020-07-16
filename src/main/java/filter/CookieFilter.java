@@ -49,9 +49,6 @@ public class CookieFilter implements Filter {
             return;
         }
 
-        // Connection создан в JDBCFilter.
-        //Connection conn = MyUtils.getStoredConnection(request);
-
         // Флаг(flag) для проверки Cookie.
         String checked = (String) session.getAttribute("COOKIE_CHECKED");
         if (checked == null) {

@@ -25,15 +25,10 @@ public class UserInfoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        // Проверить, вошел ли пользователь в систему (login) или нет.
         Client loginedUser = MyUtils.getLoginedUser(session);
 
-
-        // Сохранить информацию в request attribute перед тем как forward (перенаправить).
         request.setAttribute("user", loginedUser);
 
-        // Если пользователь уже вошел в систему (login), то forward (перенаправить) к странице
-        // /WEB-INF/views/userInfoView.jsp
         RequestDispatcher dispatcher //
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfoView.jsp");
         dispatcher.forward(request, response);
